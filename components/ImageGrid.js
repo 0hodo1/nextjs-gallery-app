@@ -2,7 +2,7 @@ import { db } from "../firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-const ImageGrid = () => {
+const ImageGrid = ({ setSelectedImage }) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,11 @@ const ImageGrid = () => {
     <div className="img-grid">
       {docs &&
         docs.map((doc) => (
-          <div className="img-wrap" key={doc.id}>
+          <div
+            className="img-wrap"
+            key={doc.id}
+            onClick={() => setSelectedImage(doc.url)}
+          >
             <img src={doc.url} alt="uploaded" />
           </div>
         ))}

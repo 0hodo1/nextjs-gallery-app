@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const Modal = ({ selectedImage, setSelectedImage }) => {
   const handleClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
@@ -6,9 +8,19 @@ const Modal = ({ selectedImage, setSelectedImage }) => {
   };
 
   return (
-    <div className="backdrop" onClick={handleClick}>
-      <img src={selectedImage} alt="resim" />
-    </div>
+    <motion.div
+      className="backdrop"
+      onClick={handleClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <motion.img
+        src={selectedImage}
+        alt="resim"
+        initial={{ y: "-100vh" }}
+        animate={{ y: 0 }}
+      />
+    </motion.div>
   );
 };
 export default Modal;
